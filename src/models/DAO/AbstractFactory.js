@@ -1,6 +1,5 @@
-import UserMemoryModels from "../User/user.memory.models.js";
-import UserThirdPartyAPIModels from "../User/user.thirdpartyAPI.models.js";
-import UserFsModels from "../User/user.fs.models.js";
+import TemperatureMemoryModels from "../User/temperature.memory.models.js";
+import TemperatureFsModels from "../User/temperature.fs.models.js";
 
 export default class ModelFactory {
   constructor() {}
@@ -9,21 +8,14 @@ export default class ModelFactory {
     switch (type) {
       case "MEM":
         console.log("Persistiendo en la memoria del servidor!");
-        return new UserMemoryModels();
-      case "THIRD_PARTY_API":
-        console.log("Emulando persistencia en una REST API externa!");
-        return new UserThirdPartyAPIModels();
+        return new TemperatureMemoryModels();
       case "FS":
         console.log("Persistiendo sobre FileSystem (FS)");
-        return new UserFsModels();
-      /* case "MONGO_DB":
-        console.log("Persistiendo en la memoria de MongoDB!");
-        return new ProductsModelMongo();
-      */
+        return new TemperatureFsModels();
 
       default:
         console.log("Persistiendo en la memoria default (MEMORY)!");
-        return new UserMemoryModels();
+        return new TemperatureMemoryModels();
     }
   }
 }

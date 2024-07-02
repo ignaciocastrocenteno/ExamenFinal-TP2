@@ -1,25 +1,27 @@
-import UserServices from "../services/user.services.js";
+import TemperatureServices from "../services/temperature.services.js";
 
-export default class UserControllers {
+export default class TemperatureControllers {
   #services;
   constructor() {
-    this.#services = new UserServices();
+    this.#services = new TemperatureServices();
   }
 
   checkEmptyObject = (user) => Object.keys(user).length === 0;
 
-  getUsers = async (req, res) => {
+  getSondas = async (req, res) => {
     try {
-      const users = await this.#services.getUsers();
-
+      const sondas = await this.#services.getSondas();
       const date = new Date();
-      const RESULT_OUTPUT = `All users have been loaded from the database available from ${date.toUTCString()}`;
+
+      console.log(
+        `All sondas' data have been loaded from the database available to ${date.toUTCString()}`
+      );
       /* res
         .status(200)
         .send({statusCode: 200, message: RESULT_OUTPUT, result: users});
       */
 
-      res.status(200).send(users);
+      res.status(200).send(sondas);
     } catch (error) {
       console.log(`   ---> Server Error: [${error}]`);
       res
@@ -30,49 +32,50 @@ export default class UserControllers {
     }
   };
 
-  getUserByID = async (req, res) => {
+  getSondaByID = async (req, res) => {
     try {
       const {id} = req.params;
-      const userFound = await this.#services.getUserByID(id);
+      const sondaFound = await this.#services.getSondaByID(id);
 
-      if (!userFound) {
+      if (!sondaFound) {
         throw new Error(
-          "The specified user ID is incorrect, missing or has been deleted in the past"
+          "The specified sonda ID is incorrect, missing or has been deleted in the past"
         );
       }
 
-      res.status(200).send(userFound);
+      res.status(200).send(sondaFound);
     } catch (error) {
       console.log(`   ---> Server Error: [${error}]`);
       res
         .status(404)
         .send(
-          "<!DOCTYPE html><html><title>404 Not Found</title><body><h1>Page Not Found</h1></body></html>"
+          `<!DOCTYPE html><html><title>404 Not Found</title><body><h1>${error.message}</h1></body></html>`
         );
     }
   };
 
-  createUser = async (req, res) => {
+  createSonda = async (req, res) => {
     try {
-      const userToAdd = req.body;
+      const sondaToAdd = req.body;
 
-      if (this.checkEmptyObject(userToAdd)) {
-        throw new Error("An empty user object cannot be processed");
+      if (this.checkEmptyObject(sondaToAdd)) {
+        throw new Error("An empty sonda object cannot be processed");
       }
 
-      const createdUser = await this.#services.createUser(userToAdd);
-      const RESULT_OUTPUT =
-        "A new user has been created successfully in the database";
-      console.log(RESULT_OUTPUT);
+      const createdSonda = await this.#services.createSonda(sondaToAdd);
 
-      res.status(201).send(createdUser);
+      console.log(
+        "New sonda data has been created successfully in the database"
+      );
+
+      res.status(201).send(createdSonda);
     } catch (error) {
-      console.log("The creation of the new user could not be completed");
+      console.log("The creation of new sonda data could not be completed");
       console.log(`   ---> Server Error: [${error}]`);
       res
         .status(406)
         .send(
-          "<!DOCTYPE html><html><title>406 Not Acceptable</title><body><h1>The received content is not acceptable!</h1></body></html>"
+          `<!DOCTYPE html><html><title>406 Not Acceptable</title><body><h1>${error.message}</h1></body></html>`
         );
     }
   };

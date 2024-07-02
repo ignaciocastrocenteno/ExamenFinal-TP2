@@ -1,24 +1,24 @@
 import ModelFactory from "../models/DAO/AbstractFactory.js";
 import config from "../../config.js";
 
-export default class UserServices {
+export default class TemperatureServices {
   #models;
   constructor() {
     this.#models = ModelFactory.get(config.PERSISTENCE_TYPE);
   }
 
-  getUsers = async () => {
-    const users = await this.#models.getUsers();
-    return users;
+  getSondas = async () => {
+    const sondas = await this.#models.getSondas();
+    return sondas;
   };
 
-  getUserByID = async (id) => {
-    const user = await this.#models.getUserByID(id);
-    return user;
+  getSondaByID = async (id) => {
+    const sonda = await this.#models.getSondaByID(id);
+    return sonda;
   };
 
-  createUser = async (userToAdd) => {
-    const result = await this.#models.createUser(userToAdd);
+  createSonda = async (sondaToAdd) => {
+    const result = await this.#models.createSonda(sondaToAdd);
     return result;
   };
 

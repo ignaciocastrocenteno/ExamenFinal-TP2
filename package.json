@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ignaciocastrocenteno/PrimerServidorExpress.git"
+    "url": "git+https://github.com/ignaciocastrocenteno/ExamenFinal-TP2.git"
   },
   "keywords": [
     "JavaScript",
@@ -29,9 +29,9 @@
   "author": "Ignacio Castro Centeno",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ignaciocastrocenteno/PrimerServidorExpress/issues"
+    "url": "https://github.com/ignaciocastrocenteno/ExamenFinal-TP2/issues"
   },
-  "homepage": "https://github.com/ignaciocastrocenteno/PrimerServidorExpress#readme",
+  "homepage": "https://github.com/ignaciocastrocenteno/ExamenFinal-TP2#readme",
   "dependencies": {
     "chai": "^5.1.1",
     "express": "^4.19.2",

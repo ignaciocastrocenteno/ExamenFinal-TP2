@@ -1,5 +1,5 @@
 import express from "express";
-import UserRouter from "./src/routes/user.routes.js";
+import TemperatureRouter from "./src/routes/temperature.routes.js";
 import config from "./config.js";
 
 const app = express();
@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-app.use("/", new UserRouter().start());
+app.use("/", new TemperatureRouter().start());
 
 app.listen(config.PORT, () => {
   console.log(`Server already running in port localhost ${config.PORT}`);
