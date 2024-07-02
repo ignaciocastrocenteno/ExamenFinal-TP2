@@ -1,5 +1,4 @@
 import TemperatureMemoryModels from "../User/temperature.memory.models.js";
-import TemperatureFsModels from "../User/temperature.fs.models.js";
 
 export default class ModelFactory {
   constructor() {}
@@ -9,9 +8,9 @@ export default class ModelFactory {
       case "MEM":
         console.log("Persistiendo en la memoria del servidor!");
         return new TemperatureMemoryModels();
-      case "FS":
+      /*       case "FS":
         console.log("Persistiendo sobre FileSystem (FS)");
-        return new TemperatureFsModels();
+        return new TemperatureFsModels(); */
 
       default:
         console.log("Persistiendo en la memoria default (MEMORY)!");

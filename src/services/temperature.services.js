@@ -22,18 +22,8 @@ export default class TemperatureServices {
     return result;
   };
 
-  updateUserByID = async (userToUpdate, id) => {
-    const result = await this.#models.updateUserByID(userToUpdate, id);
-    return result;
-  };
-
-  modifyUserByID = async (userToModify, id) => {
-    const result = await this.#models.modifyUserByID(userToModify, id);
-    return result;
-  };
-
-  removeUserByID = async (id) => {
-    const result = await this.#models.removeUserByID(id);
-    return result;
+  getSondaStats = async () => {
+    const stats = await this.#models.getSondaStats();
+    return stats;
   };
 }

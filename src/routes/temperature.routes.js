@@ -13,16 +13,8 @@ export default class TemperatureRouter {
   start() {
     this.#router.get("/sondas", this.#controllers.getSondas);
     this.#router.get("/sonda/:id", this.#controllers.getSondaByID);
+    this.#router.get("/stats", this.#controllers.getSondaStats);
     this.#router.post("/sondas", this.#controllers.createSonda);
-
-    /*
-    this.#router.post("/users", this.#controllers.createUser);
-
-    this.#router.put("/users/:id", this.#controllers.updateUserByID);
-
-    this.#router.patch("/users/:id", this.#controllers.modifyUserByID);
-    this.#router.delete("/users/:id", this.#controllers.removeUserByID); 
-    */
 
     return this.#router;
   }

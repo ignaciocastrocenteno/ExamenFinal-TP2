@@ -80,72 +80,17 @@ export default class TemperatureControllers {
     }
   };
 
-  updateUserByID = async (req, res) => {
+  getSondaStats = async (req, res) => {
     try {
-      const userToUpdate = req.body;
-      const {id} = req.params;
-      const result = await this.#services.updateUserByID(userToUpdate, id);
+      const stats = await this.#services.getSondaStats();
 
-      if (this.checkEmptyObject(userToUpdate)) {
-        throw new Error("An empty user object cannot be processed");
-      }
-
-      const RESULT_OUTPUT =
-        "The user has been updated (PUT method) correctly upon the database";
-      res
-        .status(200)
-        .send({statusCode: 200, message: RESULT_OUTPUT, result: result});
+      res.status(200).send(stats);
     } catch (error) {
       console.log(`   ---> Server Error: [${error}]`);
       res
-        .status(409)
+        .status(400)
         .send(
-          "<!DOCTYPE html><html><title>409 Conflict</title><body><h1>There has been a conflict related to the request on the server!</h1></body></html>"
-        );
-    }
-  };
-
-  modifyUserByID = async (req, res) => {
-    try {
-      const userToModify = req.body;
-      const {id} = req.params;
-      const result = await this.#services.modifyUserByID(userToModify, id);
-
-      if (this.checkEmptyObject(userToModify)) {
-        throw new Error("An empty user object cannot be processed");
-      }
-
-      const RESULT_OUTPUT =
-        "The user has been modified (PATCH method) correctly based on the given information";
-      res
-        .status(200)
-        .send({statusCode: 200, message: RESULT_OUTPUT, result: result});
-    } catch (error) {
-      console.log(`   ---> Server Error: [${error}]`);
-      res
-        .status(409)
-        .send(
-          `<!DOCTYPE html><html><title>409 Conflict</title><body><h1>${error}</h1></body></html>`
-        );
-    }
-  };
-
-  removeUserByID = async (req, res) => {
-    try {
-      const {id} = req.params;
-      const result = await this.#services.removeUserByID(id);
-      const RESULT_OUTPUT =
-        "The user has been removed successfully from the database";
-
-      res
-        .status(200)
-        .send({statusCode: 200, message: RESULT_OUTPUT, result: result});
-    } catch (error) {
-      console.log(`   ---> Server Error: [${error}]`);
-      res
-        .status(409)
-        .send(
-          `<!DOCTYPE html><html><title>409 Conflict</title><body><h1>${error}</h1></body></html>`
+          "<!DOCTYPE html><html><title>400 Bad Request</title><body><h1>The operation could not been handled by the server. Try again!</h1></body></html>"
         );
     }
   };

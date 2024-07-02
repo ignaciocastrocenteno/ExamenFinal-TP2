@@ -1,8 +1,6 @@
 export default class TemperatureMemoryModels {
-  #idCounter;
   #sondas;
   constructor() {
-    this.#idCounter = 0;
     this.#sondas = [
       /* {
         id: 0, // sondas 1 a 5
@@ -56,51 +54,21 @@ export default class TemperatureMemoryModels {
     return sondaToAdd;
   };
 
-  updateUserByID = async (userToUpdate, id) => {
-    const userIndex = this.#sondas.findIndex((user) => user.id == id);
+  /* getSondaStats = async () => {
+    const stats = {
+      cantidadTotalMuestras: this.#sondas.length,
+      temperaturaSondas: {},
+    };
 
-    if (userIndex === -1) {
-      throw new Error(
-        "The user to update with the specified ID does not exist!"
-      );
-    }
+    this.#sondas.forEach((element, index, arr) => {
+      const statsPerSonda = this.#sondas.find((e) => {
+        if (e.id == index) {
+          console.log(e);
+        }
+      });
+      console.log(statsPerSonda);
+    });
 
-    this.#sondas[userIndex] = {...userToUpdate, id: parseInt(id)};
-
-    return this.#sondas[userIndex];
-  };
-
-  modifyUserByID = async (userToModify, id) => {
-    const userIndex = this.#sondas.findIndex((user) => user.id == id);
-
-    if (userIndex === -1) {
-      throw new Error(
-        "The user to modify with the specified ID does not exist!"
-      );
-    }
-
-    if ("id" in userToModify) {
-      throw new Error("The user ID can never be changed!");
-    }
-
-    const currentUser = this.#sondas[userIndex];
-    this.#sondas[userIndex] = {...currentUser, ...userToModify};
-    let result = this.#sondas[userIndex];
-
-    return result;
-  };
-
-  removeUserByID = async (id) => {
-    const userIndex = this.#sondas.findIndex((user) => user.id == id);
-
-    if (userIndex === -1) {
-      throw new Error(
-        "The user to remove with the specified ID does not exist!"
-      );
-    }
-
-    this.#sondas.splice(userIndex, 1);
-
-    return true;
-  };
+    return stats;
+  }; */
 }

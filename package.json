@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node index.js",
     "watch": "node --watch index.js",
-    "test": "mocha src/test/users.test.js"
+    "test": "mocha src/tests/temperatures.test.js"
   },
   "repository": {
     "type": "git",
